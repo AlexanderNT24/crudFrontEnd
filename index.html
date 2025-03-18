@@ -17,52 +17,51 @@
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body style="background-color: #f4f4f9;">
     <div class="ui container">
-        <h2 class="ui header" data-aos="fade-down">Dashboard de Personas</h2>
+        <h2 class="ui header" style="color: #1E3A8A;" data-aos="fade-down">Dashboard de Personas</h2>
 
         <!-- Tarjetas de métricas -->
         <div class="ui three cards">
-            <div class="card" data-aos="zoom-in">
+            <div class="card" data-aos="zoom-in" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="content">
-                    <div class="header">Total Personas</div>
+                    <div class="header" style="color: #ff6b6b;">Total Personas</div>
                     <div class="description" id="total-personas">0</div>
                 </div>
             </div>
-            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="card" data-aos="zoom-in" data-aos-delay="200" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="content">
-                    <div class="header">Edad Promedio</div>
+                    <div class="header" style="color: #4CAF50;">Edad Promedio</div>
                     <div class="description" id="edad-promedio">0</div>
                 </div>
             </div>
-            <div class="card" data-aos="zoom-in" data-aos-delay="400">
+            <div class="card" data-aos="zoom-in" data-aos-delay="400" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="content">
-                    <div class="header">Usuarios Activos</div>
+                    <div class="header" style="color: #36A2EB;">Usuarios Activos</div>
                     <div class="description" id="usuarios-activos">0</div>
                 </div>
             </div>
         </div>
 
-        <!-- Gráficos -->
+        <!-- Gráficos en horizontal -->
         <div class="ui grid">
             <div class="eight wide column" data-aos="fade-up">
-                <div class="ui segment">
+                <div class="ui segment" style="background: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
                     <canvas id="ageChart"></canvas>
                 </div>
             </div>
             <div class="eight wide column" data-aos="fade-up" data-aos-delay="300">
-                <div class="ui segment">
+                <div class="ui segment" style="background: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
                     <canvas id="genderChart"></canvas>
                 </div>
             </div>
         </div>
-        
 
         <!-- Tabla de personas -->
-        <div class="ui segment" data-aos="fade-up" data-aos-delay="500">
+        <div class="ui segment" data-aos="fade-up" data-aos-delay="500" style="background: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
             <table class="ui celled table">
                 <thead>
-                    <tr>
+                    <tr style="background-color: #1E3A8A; color: white;">
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Edad</th>
