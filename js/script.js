@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarGraficoEdades(fakeData);
     renderizarGraficoGenero(fakeData);
     renderizarTabla(fakeData);
+    
+    document.getElementById("guardarPersona").addEventListener("click", agregarPersona);
 });
 
 function generarDataFake(cantidad) {
@@ -69,3 +71,93 @@ function renderizarTabla(data) {
         tabla.innerHTML += fila;
     });
 }
+
+function agregarPersona() {
+    const nombre = document.getElementById("nombreInput").value;
+    const edad = parseInt(document.getElementById("edadInput").value);
+    const genero = document.getElementById("generoInput").value;
+    const activo = document.getElementById("activoInput").checked;
+    
+    if (!nombre || isNaN(edad) || !genero) {
+        alert("Por favor, complete todos los campos.");
+        return;
+    }
+    
+    const nuevaPersona = {
+        id: document.getElementById("tabla-personas").rows.length + 1,
+        nombre,
+        edad,
+        genero,
+        activo
+    };
+    
+    // Agregar a la tabla
+    const tabla = document.getElementById("tabla-personas");
+    const fila = `<tr>
+        <td>${nuevaPersona.id}</td>
+        <td>${nuevaPersona.nombre}</td>
+        <td>${nuevaPersona.edad}</td>
+        <td>${nuevaPersona.genero}</td>
+        <td>${nuevaPersona.activo ? "Activo" : "Inactivo"}</td>
+    </tr>`;
+    tabla.innerHTML += fila;
+    
+    // Cerrar el modal
+    $('.ui.modal').modal('hide');
+    
+    // Limpiar formulario
+    document.getElementById("nombreInput").value = "";
+    document.getElementById("edadInput").value = "";
+}
+$(document).ready(() => {
+    // Abre el modal
+    $("#btnAbrirModal").click(() => {
+        $(".ui.modal").modal("show");
+    });
+
+    // Cierra el modal
+    $("#btnCancelar").click(() => {
+        $(".ui.modal").modal("hide");
+    });
+
+    // Guardar persona y actualizar la tabla
+    $("#guardarPersona").click(() => {
+        const nombre = $("#nombreInput").val().trim();
+        const edad = parseInt($("#edadInput").val());
+        const genero = $("#generoInput").val();
+        const activo = $("#activoInput").prop("checked") ? "Activo" : "Inactivo";
+
+        if (!nombre || isNaN(edad) || !genero) {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        const nuevaPersona = {
+            id: document.querySelectorAll("#tabla-personas tr").length + 1,
+            nombre,
+            edad,
+            genero,
+            activo
+        };
+
+        // Agregar nueva persona a la tabla
+        $("#tabla-personas").append(`
+            <tr>
+                <td>${nuevaPersona.id}</td>
+                <td>${nuevaPersona.nombre}</td>
+                <td>${nuevaPersona.edad}</td>
+                <td>${nuevaPersona.genero}</td>
+                <td>${nuevaPersona.activo}</td>
+            </tr>
+        `);
+
+        // Cerrar modal
+        $(".ui.modal").modal("hide");
+
+        // Limpiar el formulario
+        $("#nombreInput").val("");
+        $("#edadInput").val("");
+        $("#generoInput").val("");
+        $("#activoInput").prop("checked", false);
+    });
+});

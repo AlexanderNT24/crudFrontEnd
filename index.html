@@ -21,6 +21,9 @@
     <div class="ui container">
         <h2 class="ui header" style="color: #1E3A8A;" data-aos="fade-down">Dashboard de Personas</h2>
 
+        <!-- Botón para abrir el modal -->
+        
+
         <!-- Tarjetas de métricas -->
         <div class="ui three cards">
             <div class="card" data-aos="zoom-in" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
@@ -56,7 +59,7 @@
                 </div>
             </div>
         </div>
-
+        <button class="ui primary button" id="btnAbrirModal" data-aos="fade-right">Agregar Persona</button>
         <!-- Tabla de personas -->
         <div class="ui segment" data-aos="fade-up" data-aos-delay="500" style="background: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
             <table class="ui celled table">
@@ -74,11 +77,50 @@
         </div>
     </div>
 
+    <!-- Modal de Ingreso de Persona -->
+    <div class="ui modal">
+        <div class="header">Agregar Nueva Persona</div>
+        <div class="content">
+            <form class="ui form">
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" id="nombreInput" placeholder="Nombre">
+                </div>
+                <div class="field">
+                    <label>Edad</label>
+                    <input type="number" id="edadInput" placeholder="Edad">
+                </div>
+                <div class="field">
+                    <label>Género</label>
+                    <select id="generoInput" class="ui dropdown">
+                        <option value="">Seleccionar</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="activoInput">
+                        <label>Usuario Activo</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <button class="ui button" id="btnCancelar">Cancelar</button>
+            <button class="ui primary button" id="guardarPersona">Guardar</button>
+        </div>
+    </div>
+
     <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
     </script>
+
+    <!-- jQuery y Semantic UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
     <script src="js/script.js"></script>
 </body>
