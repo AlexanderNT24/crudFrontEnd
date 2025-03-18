@@ -1,24 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const fakeData = generarDataFake(20); // Genera 20 registros de prueba
-    actualizarMetricas(fakeData);
-    renderizarGraficoEdades(fakeData);
-    renderizarGraficoGenero(fakeData);
-    renderizarTabla(fakeData);
-    
-    document.getElementById("guardarPersona").addEventListener("click", agregarPersona);
+    cargarPersonas(); // Llamar al backend para obtener las personas
 });
 
-function generarDataFake(cantidad) {
-    const nombres = ["Juan", "María", "Pedro", "Ana", "Luis", "Laura", "Carlos", "Marta", "Javier", "Sofía"];
-    const generos = ["Masculino", "Femenino"];
-    return Array.from({ length: cantidad }, (_, i) => ({
-        id: i + 1,
-        nombre: nombres[Math.floor(Math.random() * nombres.length)],
-        edad: Math.floor(Math.random() * 60) + 18, // Edades entre 18 y 77 años
-        genero: generos[Math.floor(Math.random() * generos.length)],
-        activo: Math.random() > 0.5 // Activo o no
-    }));
-}
+document.getElementById("guardarPersona").addEventListener("click", () => {
+    const nombre = document.getElementById("nombreInput").value;
+    const edad = document.getElementById("edadInput").value;
+    const genero = document.getElementById("generoInput").value;
+    const activo = document.getElementById("activoInput").checked;
+
+    if (!nombre || !edad || !genero) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    const nuevaPersona = { nombre, edad: parseInt(edad), genero, activo };
+
+    fetch("http://127.0.0.1:5000/personas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nuevaPersona)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Persona agregada:", data);
+            cerrarModal();
+            cargarPersonas(); // Volver a cargar la lista con la nueva persona
+        })
+        .catch(error => console.error("Error al agregar persona:", error));
+});
 
 function actualizarMetricas(data) {
     document.getElementById("total-personas").innerText = data.length;
@@ -42,25 +51,91 @@ function renderizarGraficoEdades(data) {
     });
 }
 
-function renderizarGraficoGenero(data) {
-    const genero = { Masculino: 0, Femenino: 0 };
-    data.forEach(p => genero[p.genero]++);
-    new Chart(document.getElementById("genderChart"), {
-        type: "pie",
+function cargarPersonas() {
+    fetch("http://127.0.0.1:5000/personas")
+        .then(response => response.json())
+        .then(data => {
+            actualizarTabla(data);
+            actualizarMetricas(data);
+        })
+        .catch(error => console.error("Error al cargar personas:", error));
+
+}
+
+let ageChart = null;
+let genderChart = null; // Nueva variable global para el gráfico de género
+
+function renderizarGraficoEdades(data) {
+    const edades = data.map(p => p.edad);
+    
+    const ctx = document.getElementById("ageChart").getContext("2d");
+
+    if (ageChart !== null) {
+        ageChart.destroy();
+    }
+
+    ageChart = new Chart(ctx, {
+        type: "bar",
         data: {
-            labels: ["Masculino", "Femenino"],
+            labels: edades.map((_, i) => `Persona ${i + 1}`),
             datasets: [{
-                data: [genero.Masculino, genero.Femenino],
-                backgroundColor: ["#36A2EB", "#FF6384"]
+                label: "Edades de Personas",
+                data: edades,
+                backgroundColor: "rgba(54, 162, 235, 0.6)"
             }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 }
 
-function renderizarTabla(data) {
+function renderizarGraficoGenero(data) {
+    const cantidadHombres = data.filter(p => p.genero === "Masculino").length;
+    const cantidadMujeres = data.filter(p => p.genero === "Femenino").length;
+
+    const ctx = document.getElementById("genderChart").getContext("2d");
+
+    if (genderChart !== null) {
+        genderChart.destroy();
+    }
+
+    genderChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["Hombres", "Mujeres"],
+            datasets: [{
+                label: "Distribución de Género",
+                data: [cantidadHombres, cantidadMujeres],
+                backgroundColor: ["rgba(54, 162, 235, 0.6)", "rgba(255, 99, 132, 0.6)"]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
+function cargarPersonas() {
+    fetch("http://127.0.0.1:5000/personas")
+        .then(response => response.json())
+        .then(data => {
+            actualizarTabla(data);
+            actualizarMetricas(data);
+            renderizarGraficoEdades(data);
+            renderizarGraficoGenero(data); // Llamar a la función de gráfico de género
+        })
+        .catch(error => console.error("Error al cargar personas:", error));
+}
+
+
+function actualizarTabla(personas) {
     const tabla = document.getElementById("tabla-personas");
-    tabla.innerHTML = ""; // Limpiar contenido
-    data.forEach(persona => {
+    tabla.innerHTML = "";
+
+    personas.forEach(persona => {
         const fila = `<tr>
             <td>${persona.id}</td>
             <td>${persona.nombre}</td>
@@ -72,43 +147,10 @@ function renderizarTabla(data) {
     });
 }
 
-function agregarPersona() {
-    const nombre = document.getElementById("nombreInput").value;
-    const edad = parseInt(document.getElementById("edadInput").value);
-    const genero = document.getElementById("generoInput").value;
-    const activo = document.getElementById("activoInput").checked;
-    
-    if (!nombre || isNaN(edad) || !genero) {
-        alert("Por favor, complete todos los campos.");
-        return;
-    }
-    
-    const nuevaPersona = {
-        id: document.getElementById("tabla-personas").rows.length + 1,
-        nombre,
-        edad,
-        genero,
-        activo
-    };
-    
-    // Agregar a la tabla
-    const tabla = document.getElementById("tabla-personas");
-    const fila = `<tr>
-        <td>${nuevaPersona.id}</td>
-        <td>${nuevaPersona.nombre}</td>
-        <td>${nuevaPersona.edad}</td>
-        <td>${nuevaPersona.genero}</td>
-        <td>${nuevaPersona.activo ? "Activo" : "Inactivo"}</td>
-    </tr>`;
-    tabla.innerHTML += fila;
-    
-    // Cerrar el modal
-    $('.ui.modal').modal('hide');
-    
-    // Limpiar formulario
-    document.getElementById("nombreInput").value = "";
-    document.getElementById("edadInput").value = "";
+function cerrarModal() {
+    $(".ui.modal").modal("hide");
 }
+
 $(document).ready(() => {
     // Abre el modal
     $("#btnAbrirModal").click(() => {
