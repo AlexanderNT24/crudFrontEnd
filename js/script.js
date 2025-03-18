@@ -51,17 +51,6 @@ function renderizarGraficoEdades(data) {
     });
 }
 
-function cargarPersonas() {
-    fetch("http://127.0.0.1:5000/personas")
-        .then(response => response.json())
-        .then(data => {
-            actualizarTabla(data);
-            actualizarMetricas(data);
-        })
-        .catch(error => console.error("Error al cargar personas:", error));
-
-}
-
 let ageChart = null;
 let genderChart = null; // Nueva variable global para el gráfico de género
 
