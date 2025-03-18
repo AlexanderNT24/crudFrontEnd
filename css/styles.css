@@ -43,3 +43,36 @@ body {
 .ui.header {
     color: #1b1c1d;
 }
+
+/* Estilos generales para modo oscuro */
+body.dark-mode {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+/* Tarjetas en modo oscuro */
+.dark-mode .card {
+    background: #2c2c2c !important;
+    color: white !important;
+}
+
+/* Segmentos en modo oscuro */
+.dark-mode .ui.segment {
+    background: #2c2c2c !important;
+    color: white !important;
+}
+
+/* Tabla en modo oscuro */
+.dark-mode .ui.celled.table {
+    background: #2c2c2c !important;
+    color: white !important;
+}
+.dark-mode .ui.celled.table thead {
+    background: #444 !important;
+}
+
+/* Estilos del botón de modo oscuro */
+.dark-mode #modoOscuroBtn {
+    background-color: #f4f4f9 !important;
+    color: black !important;
+}

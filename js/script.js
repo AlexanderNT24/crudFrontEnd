@@ -161,3 +161,24 @@ $(document).ready(() => {
         $("#activoInput").prop("checked", false);
     });
 });
+
+
+$(document).ready(() => {
+    // Cargar preferencia de modo oscuro
+    if (localStorage.getItem("modoOscuro") === "true") {
+        $("body").addClass("dark-mode");
+        $("#modoOscuroBtn").text("☀️ Modo Claro");
+    }
+
+    // Evento para cambiar de modo
+    $("#modoOscuroBtn").click(() => {
+        $("body").toggleClass("dark-mode");
+
+        // Guardar preferencia en localStorage
+        const modoOscuroActivo = $("body").hasClass("dark-mode");
+        localStorage.setItem("modoOscuro", modoOscuroActivo);
+
+        // Cambiar el texto del botón
+        $("#modoOscuroBtn").text(modoOscuroActivo ? "☀️ Modo Claro" : "🌙 Modo Oscuro");
+    });
+});
