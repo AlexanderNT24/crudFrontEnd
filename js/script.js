@@ -31,7 +31,7 @@ let genderChart = null; // Nueva variable global para el gráfico de género
 
 function renderizarGraficoEdades(data) {
     const edades = data.map(p => p.edad);
-    
+
     const ctx = document.getElementById("ageChart").getContext("2d");
 
     if (ageChart !== null) {
@@ -89,7 +89,7 @@ function cargarPersonas() {
             actualizarTabla(data);
             actualizarMetricas(data);
             renderizarGraficoEdades(data);
-            renderizarGraficoGenero(data); 
+            renderizarGraficoGenero(data);
         })
         .catch(error => console.error("Error al cargar personas:", error));
 }
@@ -140,17 +140,17 @@ function eliminarPersona(id) {
     fetch(`http://127.0.0.1:5000/personas/${id}`, {
         method: "DELETE",
     })
-    .then(response => {
-        if (!response.ok) throw new Error("Error al eliminar la persona");
-        return response.json();
-    })
-    .then(() => {
-        console.log("✅ Persona eliminada correctamente");
+        .then(response => {
+            if (!response.ok) throw new Error("Error al eliminar la persona");
+            return response.json();
+        })
+        .then(() => {
+            console.log("✅ Persona eliminada correctamente");
 
-        // Recargar la tabla sin refrescar la página
-        cargarPersonas();
-    })
-    .catch(error => console.error("❌ Error al eliminar persona:", error));
+            // Recargar la tabla sin refrescar la página
+            cargarPersonas();
+        })
+        .catch(error => console.error("❌ Error al eliminar persona:", error));
 }
 
 
@@ -184,20 +184,20 @@ document.getElementById("guardarEdicion").addEventListener("click", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(personaActualizada)
     })
-    .then(response => {
-        if (!response.ok) throw new Error("Error al actualizar la persona");
-        return response.json();
-    })
-    .then(() => {
-        console.log("✅ Persona actualizada correctamente");
+        .then(response => {
+            if (!response.ok) throw new Error("Error al actualizar la persona");
+            return response.json();
+        })
+        .then(() => {
+            console.log("✅ Persona actualizada correctamente");
 
-        // Cerrar el modal de edición
-        $(".ui.modal.edit").modal("hide");
+            // Cerrar el modal de edición
+            $(".ui.modal.edit").modal("hide");
 
-        // Recargar la tabla sin refrescar la página
-        cargarPersonas();
-    })
-    .catch(error => console.error("❌ Error al actualizar persona:", error));
+            // Recargar la tabla sin refrescar la página
+            cargarPersonas();
+        })
+        .catch(error => console.error("❌ Error al actualizar persona:", error));
 
     // Eliminar ID almacenado en el botón
     document.getElementById("guardarEdicion").removeAttribute("data-id");
@@ -230,16 +230,16 @@ document.getElementById("guardarPersona").addEventListener("click", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(personaActualizada)
     })
-    .then(response => {
-        if (!response.ok) throw new Error("Error al actualizar la persona");
-        return response.json();
-    })
-    .then(() => {
-        console.log("✅ Persona actualizada correctamente");
-        $(".ui.modal.edit").modal("hide"); // Cerrar modal después de guardar
-        cargarPersonas(); // Recargar la lista
-    })
-    .catch(error => console.error("❌ Error al actualizar persona:", error));
+        .then(response => {
+            if (!response.ok) throw new Error("Error al actualizar la persona");
+            return response.json();
+        })
+        .then(() => {
+            console.log("✅ Persona actualizada correctamente");
+            $(".ui.modal.edit").modal("hide"); // Cerrar modal después de guardar
+            cargarPersonas(); // Recargar la lista
+        })
+        .catch(error => console.error("❌ Error al actualizar persona:", error));
 
     document.getElementById("guardarPersona").removeAttribute("data-id");
 });
@@ -248,7 +248,7 @@ document.getElementById("guardarPersona").addEventListener("click", () => {
 
 function actualizarTabla(personas) {
     const tabla = document.getElementById("tabla-personas");
-    tabla.innerHTML = ""; 
+    tabla.innerHTML = "";
 
     personas.forEach(persona => {
         const fila = document.createElement("tr");
