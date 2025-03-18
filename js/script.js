@@ -125,7 +125,7 @@ function cargarPersonas() {
             actualizarTabla(data);
             actualizarMetricas(data);
             renderizarGraficoEdades(data);
-            renderizarGraficoGenero(data); // Llamar a la función de gráfico de género
+            renderizarGraficoGenero(data); 
         })
         .catch(error => console.error("Error al cargar personas:", error));
 }
