@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Personas</title>
+    
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="ui container">
+        <h2 class="ui header" data-aos="fade-down">Dashboard de Personas</h2>
+
+        <!-- Tarjetas de métricas -->
+        <div class="ui three cards">
+            <div class="card" data-aos="zoom-in">
+                <div class="content">
+                    <div class="header">Total Personas</div>
+                    <div class="description" id="total-personas">0</div>
+                </div>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="content">
+                    <div class="header">Edad Promedio</div>
+                    <div class="description" id="edad-promedio">0</div>
+                </div>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="content">
+                    <div class="header">Usuarios Activos</div>
+                    <div class="description" id="usuarios-activos">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="ui grid">
+            <div class="eight wide column" data-aos="fade-up">
+                <div class="ui segment">
+                    <canvas id="ageChart"></canvas>
+                </div>
+            </div>
+            <div class="eight wide column" data-aos="fade-up" data-aos-delay="300">
+                <div class="ui segment">
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Tabla de personas -->
+        <div class="ui segment" data-aos="fade-up" data-aos-delay="500">
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Género</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-personas"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- AOS JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

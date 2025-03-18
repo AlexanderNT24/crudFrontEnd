@@ -1,0 +1,45 @@
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+#sidebar {
+    background-color: #1b1c1d;
+    height: 100vh;
+    padding: 20px;
+    color: white;
+}
+
+.ui.vertical.menu .item {
+    color: white;
+    font-size: 16px;
+    padding: 15px;
+}
+
+.ui.menu .item:hover {
+    background-color: #2185d0;
+}
+
+#main-content {
+    padding: 20px;
+}
+
+.ui.cards .card {
+    text-align: center;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.ui.segment {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.ui.header {
+    color: #1b1c1d;
+}
