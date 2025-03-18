@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Personas</title>
     <!-- Botón para cambiar a modo oscuro -->
-<button class="ui button" id="modoOscuroBtn" style="float: right;">🌙 Modo Oscuro</button>
+    <button class="ui button" id="modoOscuroBtn" style="float: right;">🌙 Modo Oscuro</button>
 
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
     <!-- AOS (Animate On Scroll) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body style="background-color: #f4f4f9;">
     <div class="ui container">
         <h2 class="ui header" style="color: #1E3A8A;" data-aos="fade-down">Dashboard de Personas</h2>
 
         <!-- Botón para abrir el modal -->
-        
+
 
         <!-- Tarjetas de métricas -->
         <div class="ui three cards">
-            <div class="card" data-aos="zoom-in" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="card" data-aos="zoom-in"
+                style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="content">
                     <div class="header" style="color: #ff6b6b;">Total Personas</div>
                     <div class="description" id="total-personas">0</div>
                 </div>
             </div>
-            <div class="card" data-aos="zoom-in" data-aos-delay="200" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="card" data-aos="zoom-in" data-aos-delay="200"
+                style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="content">
                     <div class="header" style="color: #4CAF50;">Edad Promedio</div>
                     <div class="description" id="edad-promedio">0</div>
                 </div>
             </div>
-            <div class="card" data-aos="zoom-in" data-aos-delay="400" style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="card" data-aos="zoom-in" data-aos-delay="400"
+                style="background: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="content">
                     <div class="header" style="color: #36A2EB;">Usuarios Activos</div>
                     <div class="description" id="usuarios-activos">0</div>
@@ -63,7 +68,8 @@
         </div>
         <button class="ui primary button" id="btnAbrirModal" data-aos="fade-right">Agregar Persona</button>
         <!-- Tabla de personas -->
-        <div class="ui segment" data-aos="fade-up" data-aos-delay="500" style="background: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        <div class="ui segment" data-aos="fade-up" data-aos-delay="500"
+            style="background: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
             <table class="ui celled table">
                 <thead>
                     <tr style="background-color: #1E3A8A; color: white;">
@@ -114,6 +120,42 @@
         </div>
     </div>
 
+    <!-- Modal de Edición de Persona -->
+    <!-- Modal de Edición -->
+    <div class="ui modal edit">
+        <div class="header">Editar Persona</div>
+        <div class="content">
+            <div class="ui form">
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" id="editarNombreInput">
+                </div>
+                <div class="field">
+                    <label>Edad</label>
+                    <input type="number" id="editarEdadInput">
+                </div>
+                <div class="field">
+                    <label>Género</label>
+                    <select id="editarGeneroInput">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="editarActivoInput">
+                        <label>Activo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="ui button" id="btnCancelarEditar">Cancelar</button>
+            <button class="ui primary button" id="guardarEdicion">Guardar</button>
+        </div>
+    </div>
+
+
     <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
@@ -126,4 +168,5 @@
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
