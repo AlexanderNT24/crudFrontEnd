@@ -56,6 +56,9 @@ body.dark-mode {
     color: white !important;
 }
 
+.dark-mode .description{
+    color: white !important;
+}
 /* Segmentos en modo oscuro */
 .dark-mode .ui.segment {
     background: #2c2c2c !important;
