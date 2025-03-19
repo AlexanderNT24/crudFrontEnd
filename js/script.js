@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  cargarPersonas(); 
+  cargarPersonas();
 });
 
 function cargarPersonas() {
