@@ -29,6 +29,12 @@
   </head>
 
   <body style="background-color: #f4f4f9">
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        cargarPersonas();
+      });
+    </script>
+
     <div class="ui container">
       <h2 class="ui header" data-aos="fade-down">Dashboard de Personas</h2>
 
@@ -130,10 +136,7 @@
         "
       >
         <table class="ui celled table" id="personTable">
-          <thead
-            class="table-head"
-            style="position: sticky; top: 0; z-index: 10"
-          >
+          <thead class="table-head" style="position: sticky; top: 0">
             <tr class="tr-tabla-personas">
               <th>ID</th>
               <th>Nombre</th>
@@ -269,6 +272,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
+    <script src="js/loadPeople.js"></script>
+    <script src="js/darkMode.js"></script>
     <script src="js/script.js"></script>
     <script src="js/addPeople.js"></script>
     <script src="js/editPeople.js"></script>

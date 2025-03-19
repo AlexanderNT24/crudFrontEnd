@@ -82,3 +82,7 @@ function editarPersona(id) {
       alert("Error al cargar la información. Inténtalo de nuevo.");
     });
 }
+
+document.getElementById("btnCancelarEditar").addEventListener("click", () => {
+  $(".ui.modal.edit").modal("hide");
+});

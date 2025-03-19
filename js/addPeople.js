@@ -13,7 +13,7 @@ document.getElementById("guardarPersona").addEventListener("click", () => {
     return;
   }
 
-  // Guardar datos en una variable para usarlos después de la confirmación
+
   const personaActualizada = { nombre, edad, genero, activo };
 
   $("#modalConfirmacion")
@@ -62,7 +62,6 @@ function mostrarAlerta(mensaje, tipo = "success") {
     alerta.transition("fade out");
   }, 3000);
 }
-
 
 $(document).ready(() => {
   $("#btnAbrirModalAgregar").click(() => {
