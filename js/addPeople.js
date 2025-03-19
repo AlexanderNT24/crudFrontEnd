@@ -16,7 +16,6 @@ document.getElementById("guardarPersona").addEventListener("click", () => {
   // Guardar datos en una variable para usarlos después de la confirmación
   const personaActualizada = { nombre, edad, genero, activo };
 
-  // Mostrar el modal de confirmación
   $("#modalConfirmacion")
     .modal({
       closable: false,
