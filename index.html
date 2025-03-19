@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard de Personas</title>
+    <title>Dashboard</title>
     <!-- Botón para cambiar a modo oscuro -->
     <button class="ui button" id="modoOscuroBtn" style="float: right">
       🌙 Modo Oscuro
@@ -78,16 +78,16 @@
           </div>
         </div>
       </div>
-        <div class="ui tiny modal" id="modalConfirmacion">
+      <div class="ui tiny modal" id="modalConfirmacion">
         <div class="header">Confirmar Acción</div>
         <div class="content">
-            <p>¿Estás seguro de que deseas guardar esta persona?</p>
+          <p>¿Estás seguro de que deseas guardar esta persona?</p>
         </div>
         <div class="actions">
-            <button class="ui red cancel button">Cancelar</button>
-            <button class="ui green approve button">Guardar</button>
+          <button class="ui red cancel button">Cancelar</button>
+          <button class="ui green approve button">Guardar</button>
         </div>
-        </div>
+      </div>
       <!-- Gráficos en horizontal -->
       <div class="ui grid">
         <div class="eight wide column" data-aos="fade-up">
@@ -113,13 +113,7 @@
           </div>
         </div>
       </div>
-      <button
-        class="ui primary button"
-        id="btnAbrirModalAgregar"
-        data-aos="fade-right"
-      >
-        Agregar Persona
-      </button>
+
       <!-- Tabla de personas -->
       <div
         class="ui segment"
@@ -127,9 +121,20 @@
         data-aos-delay="500"
         style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1)"
       >
-        <table class="ui celled table">
+        <div class="ui icon input">
+          <input type="text" id="searchInput" placeholder="Buscar persona..." />
+          <i class="search icon"></i>
+        </div>
+        <table class="ui celled table" id="personTable">
           <thead>
             <tr class="tr-tabla-personas">
+              <button
+                class="ui primary button"
+                id="btnAbrirModalAgregar"
+                data-aos="fade-right"
+              >
+                Agregar Persona
+              </button>
               <th>ID</th>
               <th>Nombre</th>
               <th>Edad</th>
@@ -137,9 +142,10 @@
               <th>Estado</th>
             </tr>
           </thead>
+
           <tbody id="tabla-personas"></tbody>
         </table>
-        <div id="alerta" class="ui hidden message" style="z-index: 1000;">
+        <div id="alerta" class="ui hidden message" style="z-index: 1000">
           <i class="close icon"></i>
           <div class="header">Aviso</div>
           <p id="alerta-mensaje"></p>
