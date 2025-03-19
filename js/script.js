@@ -215,7 +215,7 @@ document.getElementById("guardarPersona").addEventListener("click", () => {
     const edad = parseInt(document.getElementById("edadInput").value.trim());
     const genero = document.getElementById("generoInput").value;
     const activo = document.getElementById("activoInput").checked;
-
+    console.log("hoal")
     if (!nombre || isNaN(edad) || !genero) {
         alert("Por favor, completa todos los campos correctamente.");
         return;
@@ -225,8 +225,8 @@ document.getElementById("guardarPersona").addEventListener("click", () => {
 
     console.log("Enviando actualización para ID:", id, personaActualizada); // 🔍 Verificar que los datos son correctos
 
-    fetch(`http://127.0.0.1:5000/personas/${id}`, {
-        method: "PUT",
+    fetch(`http://127.0.0.1:5000/personas`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(personaActualizada)
     })
@@ -286,13 +286,13 @@ function cerrarModal() {
 
 $(document).ready(() => {
     // Abre el modal
-    $("#btnAbrirModal").click(() => {
-        $(".ui.modal").modal("show");
+    $("#btnAbrirModalAgregar").click(() => {
+        $(".ui.modal.add").modal("show");
     });
 
     // Cierra el modal
     $("#btnCancelar").click(() => {
-        $(".ui.modal").modal("hide");
+        $(".ui.modal.add").modal("hide");
     });
 
     // Guardar persona y actualizar la tabla
@@ -327,7 +327,7 @@ $(document).ready(() => {
         `);
 
         // Cerrar modal
-        $(".ui.modal").modal("hide");
+        $(".ui.modal.add").modal("hide");
 
         // Limpiar el formulario
         $("#nombreInput").val("");
