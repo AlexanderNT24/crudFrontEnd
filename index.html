@@ -30,9 +30,7 @@
 
   <body style="background-color: #f4f4f9">
     <div class="ui container">
-      <h2 class="ui header" data-aos="fade-down">
-        Dashboard de Personas
-      </h2>
+      <h2 class="ui header" data-aos="fade-down">Dashboard de Personas</h2>
 
       <!-- Botón para abrir el modal -->
 
@@ -80,7 +78,16 @@
           </div>
         </div>
       </div>
-
+        <div class="ui tiny modal" id="modalConfirmacion">
+        <div class="header">Confirmar Acción</div>
+        <div class="content">
+            <p>¿Estás seguro de que deseas guardar esta persona?</p>
+        </div>
+        <div class="actions">
+            <button class="ui red cancel button">Cancelar</button>
+            <button class="ui green approve button">Guardar</button>
+        </div>
+        </div>
       <!-- Gráficos en horizontal -->
       <div class="ui grid">
         <div class="eight wide column" data-aos="fade-up">
@@ -132,6 +139,11 @@
           </thead>
           <tbody id="tabla-personas"></tbody>
         </table>
+        <div id="alerta" class="ui hidden message" style="z-index: 1000;">
+          <i class="close icon"></i>
+          <div class="header">Aviso</div>
+          <p id="alerta-mensaje"></p>
+        </div>
       </div>
     </div>
 
@@ -202,6 +214,31 @@
       <div class="actions">
         <button class="ui button" id="btnCancelarEditar">Cancelar</button>
         <button class="ui primary button" id="guardarEdicion">Guardar</button>
+      </div>
+      <div class="ui basic modal">
+        <div class="ui icon header">
+          <i class="trash alternate icon"></i>
+          Eliminar Persona
+        </div>
+        <div class="content">
+          <p>¿Estás seguro de que quieres eliminar esta persona?</p>
+        </div>
+        <div class="actions">
+          <div class="ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            No
+          </div>
+          <div class="ui green ok inverted button">
+            <i class="checkmark icon"></i>
+            Sí
+          </div>
+        </div>
+      </div>
+
+      <div id="alerta" class="ui hidden message">
+        <i class="close icon"></i>
+        <div class="header">Aviso</div>
+        <p id="alerta-mensaje"></p>
       </div>
     </div>
 
