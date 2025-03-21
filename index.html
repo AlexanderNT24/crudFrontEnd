@@ -8,7 +8,7 @@
     <button class="ui button" id="modoOscuroBtn" style="float: right">
       🌙 Modo Oscuro
     </button>
-
+    <link rel="stylesheet" href="css/styles_mediapipe.css">
     <!-- Semantic UI -->
     <link
       rel="stylesheet"
@@ -135,6 +135,9 @@
           overflow-y: auto;
         "
       >
+      <button class="ui button" id="btnAbrirMediapipeModal">
+        Abrir Cámara con Face Mesh
+      </button>
         <table class="ui celled table" id="personTable">
           <thead class="table-head" style="position: sticky; top: 0">
             <tr class="tr-tabla-personas">
@@ -167,6 +170,22 @@
       </div>
     </div>
 
+<!-- Modal para MediaPipe Face Mesh -->
+<div class="ui modal" id="mediapipeModal">
+  <div class="header">Tomar Foto con Filtros</div>
+  <div class="content">
+    <div class="container-video">
+      <video id="video" autoplay playsinline style="display: none;"></video>
+      <canvas id="output"></canvas>
+      <img id="nose-image" src="img/nariz.png" alt="Imagen en la nariz" style="display: none;">
+    </div>
+  </div>
+  <div class="actions">
+    <button class="ui button" id="btnMostrarMalla">Mostrar Malla Facial</button>
+    <button class="ui button" id="btnTomarFoto">Tomar Foto</button>
+    <button class="ui button" id="btnCerrarModal">Cerrar</button>
+  </div>
+</div>
     <!-- Modal de Ingreso de Persona -->
     <div class="ui modal add">
       <div class="header">Agregar Nueva Persona</div>
@@ -204,7 +223,7 @@
 
     <!-- Modal de Edición de Persona -->
     <!-- Modal de Edición -->
-    <div class="ui modal edit">
+    <div  class="ui modal edit">
       <div class="header">Editar Persona</div>
       <div class="content">
         <div class="ui form">
@@ -262,6 +281,12 @@
       </div>
     </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+  <script src="js/scriptMediapipe.js"></script>
+</body>
     <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
